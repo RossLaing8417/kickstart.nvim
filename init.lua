@@ -795,6 +795,7 @@ require('lazy').setup({
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
     },
     config = function()
@@ -872,8 +873,16 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'buffer' },
         },
       }
+
+      cmp.setup.filetype({ 'sql' }, {
+        sources = {
+          { name = 'vim-dadbod-completion' },
+          { name = 'buffer' },
+        },
+      })
     end,
   },
 
@@ -968,7 +977,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',

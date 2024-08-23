@@ -13,7 +13,36 @@ return {
   -- ThePrimeagen Plugins
   { 'ThePrimeagen/vim-be-good' },
   { 'ThePrimeagen/git-worktree.nvim' },
-  { 'ThePrimeagen/harpoon' },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      local harpoon = require 'harpoon'
+      harpoon:setup()
+
+      vim.keymap.set('n', '<M-a>', function()
+        harpoon:list():add()
+      end, { desc = 'Harpoon: Add', silent = true })
+      vim.keymap.set('n', '<M-s>', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, { desc = 'Harpoon: Toggle quick menu', silent = true })
+      vim.keymap.set('n', '<M-e>', function()
+        harpoon:list():select(1)
+      end, { desc = 'Harpoon: Select 1', silent = true })
+      vim.keymap.set('n', '<M-r>', function()
+        harpoon:list():select(2)
+      end, { desc = 'Harpoon: Select 2', silent = true })
+      vim.keymap.set('n', '<M-u>', function()
+        harpoon:list():select(3)
+      end, { desc = 'Harpoon: Select 3', silent = true })
+      vim.keymap.set('n', '<M-i>', function()
+        harpoon:list():select(4)
+      end, { desc = 'Harpoon: Select 4', silent = true })
+    end,
+  },
 
   -- Fancy Undo Tree
   { 'mbbill/undotree' },
@@ -55,4 +84,9 @@ return {
     },
     lazy = false,
   },
+
+  -- Dad Bod
+  { 'tpope/vim-dadbod' },
+  { 'kristijanhusak/vim-dadbod-completion' },
+  { 'kristijanhusak/vim-dadbod-ui' },
 }
